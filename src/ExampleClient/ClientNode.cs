@@ -50,8 +50,8 @@ namespace ExampleClient
                 return;
             }
 
-            // クライアント数取得
-            var clientsCount = await client.RequestGetClientsCountAsync();
+            // // クライアント数取得
+            // var clientsCount = await client.RequestGetClientsCountAsync();
 
             var roomList = await client.RequestGetRoomListAsync();
 
@@ -65,6 +65,7 @@ namespace ExampleClient
             }
             else
             {
+                // ルーム入室
                 var enterRoomResp = await client.RequestEnterRoomAsync(roomList.First().Id);
             }
         }

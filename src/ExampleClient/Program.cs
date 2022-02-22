@@ -36,7 +36,20 @@ namespace ExampleClient
                 // GameNode登録
                 var gameNode = new GameNode(clientNode);
                 Engine.AddNode(gameNode);
+
+                gameNode.OnPlayerEntered(clientNode.Client.Id.Value, null);
+
+                var currentRoom = clientNode.Client.CurrentRoom;
+                foreach(var kvp in currentRoom.PlayerStatuses)
+                {
+                    Console.WriteLine(kvp.Key);
+                    gameNode.OnPlayerEntered(kvp.Key, kvp.Value);
+                }
+                
                 listener.OnGameMessageReceived += gameNode.OnGameMessageReceived;
+                listener.OnTicked += gameNode.OnTicked;
+                listener.OnPlayerEntered += gameNode.OnPlayerEntered;
+                listener.OnPlayerExited += gameNode.OnPlayerExited;
             });
 
             while (Engine.DoEvents())

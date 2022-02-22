@@ -13,7 +13,7 @@ using SquirrelayServer.Common;
 
 namespace ExampleClient
 {
-    sealed class ClientNode : Node
+    sealed class ClientNode : Node, IMessenger<GameMessage>
     {
         Client<PlayerStatus, RoomMessage, GameMessage> client;
 
@@ -65,14 +65,25 @@ namespace ExampleClient
             {
                 // ルーム作成
                 var createRoomResp = await client.RequestCreateRoomAsync();
+                Console.WriteLine(createRoomResp.Result);
 
                 // ゲームスタート
                 var gameStartResp = await client.RequestStartPlayingAsync();
+                Console.WriteLine(gameStartResp.Result);
             }
             else
             {
                 // ルーム入室
                 var enterRoomResp = await client.RequestEnterRoomAsync(roomList.First().Id);
+                Console.WriteLine(enterRoomResp.Result);
+            }
+        }
+
+        void IMessenger<GameMessage>.Send(GameMessage msg)
+        {
+            if (client.IsConnected && client.CurrentRoom is { })
+            {
+                _ = client.SendGameMessageAsync(msg);
             }
         }
     }

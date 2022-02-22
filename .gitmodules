@@ -1,0 +1,3 @@
+[submodule "lib/SquirrelayServer"]
+	path = lib/SquirrelayServer
+	url = https://github.com/wraikny/SquirrelayServer.git

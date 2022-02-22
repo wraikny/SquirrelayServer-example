@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\lib\SquirrelayServer\src\SquirrelayServer\SquirrelayServer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Altseed2" Version="2.1.0" />
+    <PackageReference Include="MessagePack.Altseed2" Version="1.0.0" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,1 @@
+dotnet run --project lib/SquirrelayServer/src/SquirrelayServer.App config.json

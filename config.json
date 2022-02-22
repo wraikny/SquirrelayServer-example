@@ -1,0 +1,35 @@
+{
+    "netConfig": {
+        "connectionKey": "SomeKey",
+        "port": 8080,
+        "maxClientsCount": 32,
+        "updateTime": 20,
+        "natPunchEnabled": false,
+        "pingInterval": 1000,
+        "disconnectTimeout": 5000,
+        "debugOnly": {
+            "simulationPacketLossChance": null,
+            "simulateLatencyRange": [ 17, 21 ]
+        }
+    },
+
+    "roomConfig": {
+        "invisibleEnabled": true,
+        "roomMessageEnabled": true,
+        "passwordEnabled": true,
+        "enterWhenPlayingAllowed": true,
+        "tickMessageEnabled": true,
+        "disposeSecondsWhenNoMember": 3.0,
+        "updatingDisposeStatusIntervalSeconds": 10.0,
+        "numberOfPlayersRange": [ 1, 6 ],
+        "generatedRoomIdRange": [ 1000, 9999 ]
+    },
+
+    "serverLoggingConfig": {
+        "logging": true,
+        "serverLogging": true,
+        "roomListLogging": true,
+        "roomLogging": true,
+        "messageLogging": false
+    }
+}

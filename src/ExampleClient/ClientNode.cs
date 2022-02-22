@@ -17,6 +17,9 @@ namespace ExampleClient
     {
         Client<PlayerStatus, RoomMessage, GameMessage> client;
 
+        public Client<PlayerStatus, RoomMessage, GameMessage> Client => client;
+
+
         public ClientNode(NetConfig netConfig, IClientListener<PlayerStatus, RoomMessage, GameMessage> listener)
         {
             var serverOpt = Options.DefaultOptions;
@@ -50,9 +53,12 @@ namespace ExampleClient
                 return;
             }
 
-            // // クライアント数取得
-            // var clientsCount = await client.RequestGetClientsCountAsync();
+            // 普通のゲームならルーム選択UIなど出したい。
+            await EnterRoom();
+        }
 
+        public async Task EnterRoom()
+        {
             var roomList = await client.RequestGetRoomListAsync();
 
             if (roomList.Count == 0)
@@ -67,14 +73,6 @@ namespace ExampleClient
             {
                 // ルーム入室
                 var enterRoomResp = await client.RequestEnterRoomAsync(roomList.First().Id);
-            }
-        }
-
-        public void Send(GameMessage msg)
-        {
-            if (client.IsConnected)
-            {
-                _ = client.SendGameMessageAsync(msg);
             }
         }
     }

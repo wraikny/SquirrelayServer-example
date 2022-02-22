@@ -9,16 +9,21 @@ namespace ExampleClient
     {
         Dictionary<ulong, RectangleNode> players;
 
-        public event Action<GameMessage> SendGameMessage = delegate { };
+        ClientNode clientNode;
 
-        public GameNode()
+        public GameNode(ClientNode clientNode)
         {
             players = new Dictionary<ulong, RectangleNode>();
+
+            this.clientNode = clientNode;
         }
 
         protected override void OnUpdate()
         {
-            SendGameMessage(new GameMessage { Position = Engine.Mouse.Position });
+            if (clientNode.Client.IsConnected)
+            {
+                _ = clientNode.Client.SendGameMessageAsync(new GameMessage { Position = Engine.Mouse.Position });
+            }
         }
 
         public void OnGameMessageReceived(ulong id, float elapsedSeconds, GameMessage msg)
